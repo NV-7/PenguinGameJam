@@ -46,7 +46,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            health =- 10f;
+            health -= 10f;
         }
     }
 }

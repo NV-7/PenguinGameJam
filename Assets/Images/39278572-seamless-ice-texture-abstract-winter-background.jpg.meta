@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 18a67518a8e40430483dcbed698df9ae
+guid: 3c4838953ac8c4f10ab196181e335f45
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9058779029344996717
-    second: Penguins 32x32_0002_0
+      213: -7349564645441136335
+    second: 39278572-seamless-ice-texture-abstract-winter-background_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Penguins 32x32_0002_0
+      name: 39278572-seamless-ice-texture-abstract-winter-background_0
       rect:
         serializedVersion: 2
-        x: 5
+        x: 0
         y: 0
-        width: 27
-        height: 27
-      alignment: 9
-      pivot: {x: 0.5591638, y: 0.4484703}
+        width: 1300
+        height: 1300
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3923221e770c84280800000000000000
-      internalID: -9058779029344996717
+      spriteID: 13916b605e9110a90800000000000000
+      internalID: -7349564645441136335
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f142e0dc947b9480fabbe419fcb143e7
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Penguins 32x32_0002_0: -9058779029344996717
+      39278572-seamless-ice-texture-abstract-winter-background_0: -7349564645441136335
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
