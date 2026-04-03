@@ -37,10 +37,9 @@ public class PlayerMovement : MonoBehaviour
                 SceneManager.LoadScene("GameOver");
             }
         healthBar.localScale = new Vector3(health / 100f * healthBarWidth, healthBar.localScale.y, healthBar.localScale.z);
-    
     }
 
-
+    
     private void FixedUpdate()
     {
         movePlayer();
