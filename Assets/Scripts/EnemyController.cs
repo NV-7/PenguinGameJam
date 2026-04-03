@@ -32,11 +32,19 @@ public class EnemyController : MonoBehaviour
                 Destroy(gameObject);
             }
 
-        Vector3 direction = player.position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 135));
-        transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+        try
+        {
+            Vector3 direction = player.position - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 135));
+            transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
 
+        }
+        catch
+        {
+            //player is dead, do nothing
+        }
+        
         healthBar.localScale = new Vector3(health / 100f * healthBarWidth, healthBar.localScale.y, healthBar.localScale.z);
     }
 
@@ -48,5 +56,12 @@ public class EnemyController : MonoBehaviour
         {
             health -= 10f;
         }
+    }
+
+    void LateUpdate() //updates after the enemy has moved, 
+    {
+        //keeps health bar static
+        healthBar.rotation = Quaternion.identity;
+        healthBar.position = transform.position + new Vector3(0, 0.7f, 0);
     }
 }
