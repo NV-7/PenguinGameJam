@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         getDirection();
-        updateVisuals();
+        pointToMouse();
     }
 
 
@@ -60,11 +60,12 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = new Vector2(horizontalDirection, verticalDirection).normalized;
     }
 
-    void updateVisuals()
+
+    private void pointToMouse()
     {
-        if (moveDirection.x < 0)
-            spriteRenderer.flipX = true;
-        else if (moveDirection.x > 0)
-            spriteRenderer.flipX = false;
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector3 direction = mousePosition - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 135));
     }
 }
