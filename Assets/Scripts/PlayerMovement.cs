@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public float speed;
+    public float dashForce;
     private Rigidbody2D rb;
     private Vector2 moveDirection;
     private SpriteRenderer spriteRenderer;
@@ -44,6 +45,11 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         movePlayer();
+
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            dash();
+        }
     }
 
     void movePlayer()
@@ -90,6 +96,11 @@ public class PlayerMovement : MonoBehaviour
         Vector3 direction = mousePosition - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 135));
+    }
+
+    private void dash()
+    {
+        rb.AddForce(moveDirection* dashForce, ForceMode2D.Impulse);
     }
 
     void LateUpdate() //updates after the enemy has moved, 
