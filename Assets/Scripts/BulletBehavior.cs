@@ -10,8 +10,7 @@ public class BulletBehavior : MonoBehaviour
     void Start()
     {
         timeAlive = 0f;
-        velocity = 6f;
-        maxTime = 3f;
+        maxTime = 2f;
     }
 
     // Update is called once per frame
@@ -23,6 +22,8 @@ public class BulletBehavior : MonoBehaviour
             Destroy(gameObject);
         }
         //transform.rotation = GameObject.FindGameObjectWithTag("Player").transform.rotation;
-        transform.position += new Vector3(velocity * Time.deltaTime, 0, 0);
+        transform.position += -transform.up * velocity * Time.deltaTime;
     }
+
+
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 /*
 resources
@@ -14,14 +15,16 @@ public class EnemyController : MonoBehaviour
 
     public float health;
     private float maxHealth = 100f;
-
+    public float bulletDamage;
     public float healthBarWidth = 0.25f;
     public Transform healthBar;
+    private Rigidbody2D rb;
 
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
         health = maxHealth;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -37,8 +40,7 @@ public class EnemyController : MonoBehaviour
             Vector3 direction = player.position - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 135));
-            transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
-
+            
         }
         catch
         {
@@ -48,7 +50,16 @@ public class EnemyController : MonoBehaviour
         healthBar.localScale = new Vector3(health / 100f * healthBarWidth, healthBar.localScale.y, healthBar.localScale.z);
     }
 
-
+    void FixedUpdate()
+    {
+        try{
+        rb.MovePosition (Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime));
+        }
+        catch
+        {
+            
+        }
+    }
 //player must have rigidbody (dynamic) and circle collider
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -56,6 +67,11 @@ public class EnemyController : MonoBehaviour
         {
             health -= 10f;
         }
+        if (collision.gameObject.CompareTag("Bullet"))
+                {
+                    health -= bulletDamage;
+                    Destroy(collision.gameObject);
+                }
     }
 
     void LateUpdate() //updates after the enemy has moved, 
