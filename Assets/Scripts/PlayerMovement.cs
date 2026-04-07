@@ -41,27 +41,32 @@ public class PlayerMovement : MonoBehaviour
                 SceneManager.LoadScene("GameOver");
             }
         healthBar.localScale = new Vector3(health / 100f * healthBarWidth, healthBar.localScale.y, healthBar.localScale.z);
-<<<<<<< Updated upstream
-=======
+//<<<<<<< Updated upstream
+//=======
 
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             dashRequest = true;
             Debug.Log("Request Dash");
         }
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
     }
 
     
     private void FixedUpdate()
     {
-        movePlayer();
+       
 
         if (dashRequest)
         {
             dash();
             dashRequest = false;
-            Debug.Log("Dashing");
+            Debug.Log("Dashing, Position " + this.transform.position );
+
+        }
+        else
+        {
+            movePlayer();
         }
     }
 
@@ -113,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void dash()
     {
+        getDirection();
         rb.AddForce(moveDirection* dashForce, ForceMode2D.Impulse);
         Debug.Log("Initiate Dash");
         
