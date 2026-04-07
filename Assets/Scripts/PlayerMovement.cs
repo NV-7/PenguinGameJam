@@ -1,3 +1,4 @@
+using System;
 using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveDirection;
     private SpriteRenderer spriteRenderer;
+    private Boolean dashRequest = false;
+   
 
     public float health;
     private float maxHealth = 100f;
@@ -38,6 +41,15 @@ public class PlayerMovement : MonoBehaviour
                 SceneManager.LoadScene("GameOver");
             }
         healthBar.localScale = new Vector3(health / 100f * healthBarWidth, healthBar.localScale.y, healthBar.localScale.z);
+<<<<<<< Updated upstream
+=======
+
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            dashRequest = true;
+            Debug.Log("Request Dash");
+        }
+>>>>>>> Stashed changes
     }
 
     
@@ -45,9 +57,11 @@ public class PlayerMovement : MonoBehaviour
     {
         movePlayer();
 
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (dashRequest)
         {
             dash();
+            dashRequest = false;
+            Debug.Log("Dashing");
         }
     }
 
@@ -100,6 +114,8 @@ public class PlayerMovement : MonoBehaviour
     private void dash()
     {
         rb.AddForce(moveDirection* dashForce, ForceMode2D.Impulse);
+        Debug.Log("Initiate Dash");
+        
     }
 
     void LateUpdate() //updates after the enemy has moved, 
