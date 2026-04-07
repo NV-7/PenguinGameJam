@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float dashForce;
     private Rigidbody2D rb;
     private Vector2 moveDirection;
+    private Vector2 dashDirection;
     private SpriteRenderer spriteRenderer;
     private Boolean dashRequest = false;
    
@@ -41,15 +42,22 @@ public class PlayerMovement : MonoBehaviour
                 SceneManager.LoadScene("GameOver");
             }
         healthBar.localScale = new Vector3(health / 100f * healthBarWidth, healthBar.localScale.y, healthBar.localScale.z);
-//<<<<<<< Updated upstream
-//=======
 
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            dashRequest = true;
-            Debug.Log("Request Dash");
+            if(moveDirection != Vector2.zero)
+            {
+                dashDirection = moveDirection;
+            }
+            else
+            {
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                dashDirection = (Vector2)(mousePos - transform.position).normalized;
+            }
+                dashRequest = true;
+                Debug.Log("Request Dash");
         }
-//>>>>>>> Stashed changes
+
     }
 
     
@@ -118,8 +126,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void dash()
     {
-        getDirection();
-        rb.AddForce(moveDirection* dashForce, ForceMode2D.Impulse);
+
+        //rb.AddForce(dashDirection * dashForce, ForceMode2D.Impulse);
+        rb.linearVelocity = dashDirection * dashForce;
         Debug.Log("Initiate Dash");
         
     }

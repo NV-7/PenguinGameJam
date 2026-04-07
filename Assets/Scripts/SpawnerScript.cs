@@ -8,6 +8,7 @@ public class SpawnerScript : MonoBehaviour
     public GameObject Enemy1;
     public float TimeOffset = 2f;
     private float TimePassed = 0f;
+    private float timeSinceStart = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,7 +19,7 @@ public class SpawnerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        timeSinceStart += Time.deltaTime;
     }
 
     private void FixedUpdate()
