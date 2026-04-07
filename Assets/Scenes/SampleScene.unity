@@ -119,6 +119,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &327870909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 327870910}
+  - component: {fileID: 327870911}
+  m_Layer: 0
+  m_Name: Gun Tip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &327870910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327870909}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.015096553, w: 0.99988604}
+  m_LocalPosition: {x: -0.015000007, y: 0.18099998, z: 0}
+  m_LocalScale: {x: 0.039325844, y: 0.039325844, z: 0.039325844}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 830271201}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &327870911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327870909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c18b1443ec3a4155bb34e0538c6c3bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  canShoot: 0
+  bulletPrefab: {fileID: 29593680720374068, guid: b87238de2479340878af3df97ab14d54, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +415,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1835670544787795470, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835670544787795470, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835670544787795470, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7615866065854763525, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.0971127
@@ -411,7 +469,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7615866065854763525, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 327870910}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
 --- !u!4 &830271201 stripped
