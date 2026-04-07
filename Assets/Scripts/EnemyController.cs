@@ -66,10 +66,6 @@ public class EnemyController : MonoBehaviour
 //player must have rigidbody (dynamic) and circle collider
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            health -= 10f;
-        }
         if (collision.gameObject.CompareTag("Bullet"))
                 {
                     health -= bulletDamage;

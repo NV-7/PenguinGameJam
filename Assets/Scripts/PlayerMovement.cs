@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Unity.VisualStudio.Editor;
 using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -15,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 dashDirection;
     private SpriteRenderer spriteRenderer;
     private Boolean dashRequest = false;
+    public GameObject damageFlash;
+    public float knockbackAmount;
    
 
     public float health;
@@ -28,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         health = maxHealth;
+        damageFlash.SetActive(false);
     }
 
     // Update is called once per frame
@@ -88,9 +92,12 @@ public class PlayerMovement : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Enemy"))
             {
-                health -= 50f;
+                health -= 20f;
+                doDamageFlash();
+                doKnockback(collision);
             }
-        }
+            }
+            
     void getDirection()
     {
         float horizontalDirection = 0f;
@@ -128,7 +135,9 @@ public class PlayerMovement : MonoBehaviour
     {
 
         //rb.AddForce(dashDirection * dashForce, ForceMode2D.Impulse);
-        rb.linearVelocity = dashDirection * dashForce;
+        //rb.linearVelocity = dashDirection * dashForce;
+        rb.MovePosition(rb.position + dashDirection * dashForce * speed * Time.fixedDeltaTime);
+
         Debug.Log("Initiate Dash");
         
     }
@@ -139,4 +148,28 @@ public class PlayerMovement : MonoBehaviour
         healthBar.rotation = Quaternion.identity;
         healthBar.position = transform.position + new Vector3(0, -0.9f, 0);
     }
+
+    void doDamageFlash()
+    {
+        damageFlash.SetActive(true);
+        Invoke("hideDamageFlash", 0.2f);
+        
+    }
+
+     void hideDamageFlash()
+    {
+        damageFlash.SetActive(false);
+    }
+
+    void doKnockback(Collision2D collision)
+    {
+        float time = 0f;
+        float maxTime = 0.2f;
+        while(time < maxTime)
+        {
+            Vector2 knockbackDirection = (transform.position - collision.transform.position).normalized;
+            rb.MovePosition(rb.position + knockbackDirection * knockbackAmount * Time.fixedDeltaTime);
+            time += Time.deltaTime;
+        }
+      }
 }
