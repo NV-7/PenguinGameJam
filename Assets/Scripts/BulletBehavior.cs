@@ -1,16 +1,19 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BulletBehavior : MonoBehaviour
 {
     public float velocity;
     public float timeAlive;
     public float maxTime;
+    private Vector3 moveDirection;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         timeAlive = 0f;
         maxTime = 2f;
+        moveDirection = -transform.up;
     }
 
     // Update is called once per frame
@@ -22,7 +25,7 @@ public class BulletBehavior : MonoBehaviour
             Destroy(gameObject);
         }
         //transform.rotation = GameObject.FindGameObjectWithTag("Player").transform.rotation;
-        transform.position += -transform.up * velocity * Time.deltaTime;
+        transform.position += moveDirection * velocity * Time.deltaTime;
     }
 
 
