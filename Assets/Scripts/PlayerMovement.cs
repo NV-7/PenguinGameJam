@@ -1,3 +1,4 @@
+using System;
 using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,9 +9,13 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public float speed;
+    public float dashForce;
     private Rigidbody2D rb;
     private Vector2 moveDirection;
+    private Vector2 dashDirection;
     private SpriteRenderer spriteRenderer;
+    private Boolean dashRequest = false;
+   
 
     public float health;
     private float maxHealth = 100f;
@@ -37,12 +42,40 @@ public class PlayerMovement : MonoBehaviour
                 SceneManager.LoadScene("GameOver");
             }
         healthBar.localScale = new Vector3(health / 100f * healthBarWidth, healthBar.localScale.y, healthBar.localScale.z);
+
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            if(moveDirection != Vector2.zero)
+            {
+                dashDirection = moveDirection;
+            }
+            else
+            {
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                dashDirection = (Vector2)(mousePos - transform.position).normalized;
+            }
+                dashRequest = true;
+                Debug.Log("Request Dash");
+        }
+
     }
 
     
     private void FixedUpdate()
     {
-        movePlayer();
+       
+
+        if (dashRequest)
+        {
+            dash();
+            dashRequest = false;
+            Debug.Log("Dashing, Position " + this.transform.position );
+
+        }
+        else
+        {
+            movePlayer();
+        }
     }
 
     void movePlayer()
@@ -89,6 +122,15 @@ public class PlayerMovement : MonoBehaviour
         Vector3 direction = mousePosition - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 135));
+    }
+
+    private void dash()
+    {
+
+        //rb.AddForce(dashDirection * dashForce, ForceMode2D.Impulse);
+        rb.linearVelocity = dashDirection * dashForce;
+        Debug.Log("Initiate Dash");
+        
     }
 
     void LateUpdate() //updates after the enemy has moved, 
