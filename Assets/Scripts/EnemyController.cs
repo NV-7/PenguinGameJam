@@ -12,12 +12,13 @@ public class EnemyController : MonoBehaviour
 
     Transform player;
     public float moveSpeed;
-
+    
     public float health;
     private float maxHealth = 100f;
     public float bulletDamage;
     public float healthBarWidth = 0.25f;
     public Transform healthBar;
+    public GameObject spawner;
     private Rigidbody2D rb;
 
     void Start()
@@ -25,6 +26,7 @@ public class EnemyController : MonoBehaviour
         player = GameObject.FindWithTag("Player").transform;
         health = maxHealth;
         rb = GetComponent<Rigidbody2D>();
+        spawner = GameObject.FindGameObjectWithTag("Spawner");
     }
 
     // Update is called once per frame
@@ -32,7 +34,8 @@ public class EnemyController : MonoBehaviour
     {
         if (health <= 0)
             {
-                Destroy(gameObject);
+            spawner.GetComponent<SpawnerScript>().descrementEnemeyCount();
+            Destroy(gameObject);
             }
 
         try

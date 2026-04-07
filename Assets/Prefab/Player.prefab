@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   speed: 5
+  dashForce: 10
   health: 0
   healthBarWidth: 0.25
   healthBar: {fileID: 1341807156668863571}
