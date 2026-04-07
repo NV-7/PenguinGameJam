@@ -5,10 +5,12 @@ public class GunTipController : MonoBehaviour
 {
     public bool canShoot;
     public GameObject bulletPrefab;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         canShoot = true;
+        
     }
 
     // Update is called once per frame
@@ -20,6 +22,7 @@ public class GunTipController : MonoBehaviour
             {
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
                 canShoot = false;
+                
             }
             }
             if(!(Mouse.current.leftButton.isPressed))
@@ -27,7 +30,6 @@ public class GunTipController : MonoBehaviour
                 canShoot = true;
             }
 
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, transform.parent.rotation.eulerAngles.z - 135));
     }
 
         
