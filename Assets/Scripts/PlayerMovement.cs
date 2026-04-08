@@ -16,8 +16,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 dashDirection;
     private SpriteRenderer spriteRenderer;
     private Boolean dashRequest = false;
+<<<<<<< Updated upstream
     public GameObject damageFlash;
     public float knockbackAmount;
+=======
+    public GameObject ghost;
+>>>>>>> Stashed changes
    
 
     public float health;
@@ -75,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
             dashRequest = false;
             Debug.Log("Dashing, Position " + this.transform.position );
 
+            
         }
         else
         {
@@ -135,10 +140,27 @@ public class PlayerMovement : MonoBehaviour
     {
 
         //rb.AddForce(dashDirection * dashForce, ForceMode2D.Impulse);
+<<<<<<< Updated upstream
         //rb.linearVelocity = dashDirection * dashForce;
         rb.MovePosition(rb.position + dashDirection * dashForce * speed * Time.fixedDeltaTime);
 
+=======
+        Vector3 pastPos = this.transform.position;
+        rb.linearVelocity = dashDirection * dashForce;
+        spawnGhost(pastPos);
+>>>>>>> Stashed changes
         Debug.Log("Initiate Dash");
+        
+    }
+
+    private void spawnGhost(Vector3 pastPos)
+    {
+        Vector3 direction = this.transform.position - pastPos;
+        int numOfGhosts = 5;
+        for(int i = 0; i < numOfGhosts; i++)
+        {
+            Instantiate(ghost, direction/(numOfGhosts - i + 1), Quaternion.identity);
+        }
         
     }
 
