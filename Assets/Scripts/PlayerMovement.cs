@@ -21,7 +21,9 @@ public class PlayerMovement : MonoBehaviour
     public float knockbackAmount;
 
     public GameObject ghost;
-
+    public int ghostCount = 5;
+    //public float ghostInterval = 0.02f;
+    public float ghostSpawnDistance = 0.5f;
    
 
     public float health;
@@ -146,21 +148,36 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 pastPos = this.transform.position;
         rb.linearVelocity = dashDirection * dashForce;
-        spawnGhost(pastPos);
+        StartCoroutine(SpawnGhost());
 
         Debug.Log("Initiate Dash");
         
     }
 
-    private void spawnGhost(Vector3 pastPos)
+    private System.Collections.IEnumerator SpawnGhost()
     {
-        Vector3 direction = this.transform.position - pastPos;
-        int numOfGhosts = 5;
-        for(int i = 0; i < numOfGhosts; i++)
+
+        int counter = 0;
+        Vector3 prevPos = transform.position;
+        while (counter < ghostCount)
         {
-            Instantiate(ghost, direction/(numOfGhosts - i + 1), Quaternion.identity);
+            float travelDistance = Vector3.Distance(prevPos, transform.position);
+            
+            if(travelDistance >= ghostSpawnDistance)
+            {
+               GameObject ghosts =  Instantiate(ghost, transform.position, transform.rotation);
+                SpriteRenderer ghostSprite = ghosts.GetComponent<SpriteRenderer>();
+                ghostSprite.sprite = spriteRenderer.sprite;
+                ghostSprite.flipX = spriteRenderer.flipX;
+                ghostSprite.flipY = spriteRenderer.flipY;
+
+                prevPos = transform.position;
+                counter++;
+
+            }
+        yield return null;
         }
-        
+
     }
 
     void LateUpdate() //updates after the enemy has moved, 
