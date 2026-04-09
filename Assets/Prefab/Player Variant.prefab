@@ -16,6 +16,14 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6909511269416909870, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
+      propertyPath: ghost
+      value: 
+      objectReference: {fileID: 2582330086696094471}
+    - target: {fileID: 6909511269416909870, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7615866065854763525, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -59,9 +67,30 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 567528911367330116, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
     - {fileID: -97464436941890805, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
+    - {fileID: 0}
     - {fileID: 6909511269416909870, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
-    - {fileID: -6430100277359594219, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1486940408678304321, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3302966425471368116}
   m_SourcePrefab: {fileID: 100100000, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
+--- !u!1 &2582330086696094471 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1486940408678304321, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
+  m_PrefabInstance: {fileID: 3996078135398547782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-3302966425471368116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2582330086696094471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d464c7ac965b7749a9ae3fb8fa8ab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GhostingEffect
+  fadeSpeed: 1

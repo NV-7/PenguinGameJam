@@ -641,9 +641,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1835670544787795470, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6909511269416909870, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
       propertyPath: dashForce
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909511269416909870, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
+      propertyPath: ghostInterval
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909511269416909870, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
+      propertyPath: ghostSpawnDistance
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7615866065854763525, guid: 5cc129cdae65ae24e819834f0b0edfcc, type: 3}
       propertyPath: m_LocalPosition.x
