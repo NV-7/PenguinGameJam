@@ -20,12 +20,15 @@ public class EnemyController : MonoBehaviour
     public Transform healthBar;
     public GameObject spawner;
     private Rigidbody2D rb;
-
+    private AudioSource audioSource;
+    public AudioClip deathSound;
+    public AudioClip hitSound;
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
         health = maxHealth;
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
         spawner = GameObject.FindGameObjectWithTag("Spawner");
     }
 
@@ -68,6 +71,11 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
                 {
+                    audioSource.PlayOneShot(hitSound);
+                    if(health - bulletDamage <= 0)
+                    {
+                        audioSource.PlayOneShot(deathSound);
+                    }
                     health -= bulletDamage;
                     Destroy(collision.gameObject);
                 }

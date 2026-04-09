@@ -21,8 +21,9 @@ public class PlayerMovement : MonoBehaviour
     public float knockbackAmount;
 
     public GameObject ghost;
-
-   
+    
+   public AudioClip dashSound;
+   private AudioSource audioSource;
 
     public float health;
     private float maxHealth = 100f;
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = this.GetComponent<Rigidbody2D>();
         spriteRenderer = this.GetComponent<SpriteRenderer>();
+        audioSource = this.GetComponent<AudioSource>();
         health = maxHealth;
         damageFlash.SetActive(false);
     }
@@ -78,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
             dash();
             dashRequest = false;
             Debug.Log("Dashing, Position " + this.transform.position );
-
+            audioSource.PlayOneShot(dashSound);
             
         }
         else
@@ -100,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
                 health -= 20f;
                 doDamageFlash();
                 doKnockback(collision);
+                
             }
             }
             
