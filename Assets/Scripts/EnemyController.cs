@@ -23,6 +23,8 @@ public class EnemyController : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip deathSound;
     public AudioClip hitSound;
+    public GameObject expPickupPrefab;
+    private bool isDead = false;
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
@@ -35,9 +37,15 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0)
+        if (health <= 0 && !isDead)
         {
+            isDead = true;
             spawner.GetComponent<SpawnerScript>().descrementEnemeyCount();
+            if (expPickupPrefab != null)
+            {
+                Instantiate(expPickupPrefab, transform.position, Quaternion.identity);
+            }
+
             Destroy(gameObject);
         }
 

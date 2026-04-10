@@ -207,6 +207,7 @@ MonoBehaviour:
   spawner: {fileID: 0}
   deathSound: {fileID: 8300000, guid: 59009af7dedd9410ea8c8f2a37822b79, type: 3}
   hitSound: {fileID: 8300000, guid: 59009af7dedd9410ea8c8f2a37822b79, type: 3}
+  expPickupPrefab: {fileID: 3760261567084748763, guid: 8e55bb7573cdb46b7bee648f9c1001a8, type: 3}
 --- !u!58 &5320588956844332350
 CircleCollider2D:
   m_ObjectHideFlags: 0
