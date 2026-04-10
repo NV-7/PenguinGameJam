@@ -64,6 +64,10 @@ public class PlayerMovement : MonoBehaviour
 
         health = maxHealth;
         damageFlash.SetActive(false);
+        shield = transform.transform.GetChild(2).gameObject;
+        shield.GetComponent<Rigidbody2D>().freezeRotation = true;
+
+
     }
 
     // Update is called once per frame
@@ -173,6 +177,11 @@ public class PlayerMovement : MonoBehaviour
         Vector3 direction = mousePosition - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 135));
+        if (shield != null)
+        {
+            shield.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 135));
+        }
+
     }
 
     public void dash()

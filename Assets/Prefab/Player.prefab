@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 6909511269416909870}
   - component: {fileID: -97464436941890805}
   - component: {fileID: 567528911367330116}
-  - component: {fileID: -6430100277359594219}
-  - component: {fileID: 6442193351975311858}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -115,6 +113,7 @@ MonoBehaviour:
   damageFlash: {fileID: 0}
   knockbackAmount: 0
   ghost: {fileID: 2582330086696094471, guid: 86cec2cb6f0af6d428e4205588f38046, type: 3}
+  dashSound: {fileID: 0}
   ghostCount: 5
   ghostSpawnDistance: 0.2
   health: 0
