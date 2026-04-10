@@ -110,12 +110,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   speed: 5
   dashForce: 100
+  dashDuration: 0.2
+  isDashing: 0
   damageFlash: {fileID: 0}
   knockbackAmount: 0
   ghost: {fileID: 2582330086696094471, guid: 86cec2cb6f0af6d428e4205588f38046, type: 3}
   dashSound: {fileID: 0}
   ghostCount: 5
   ghostSpawnDistance: 0.2
+  gameOverScreen: {fileID: 0}
+  pausePanel: {fileID: 0}
+  shield: {fileID: 0}
   health: 0
   healthBarWidth: 0.25
   healthBar: {fileID: 1341807156668863571}
@@ -318,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c18b1443ec3a4155bb34e0538c6c3bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  canShoot: 0
+  isDashing: 0
   bulletPrefab: {fileID: 29593680720374068, guid: b87238de2479340878af3df97ab14d54, type: 3}
   shootSound: {fileID: 0}
   shotDelay: 0.15
