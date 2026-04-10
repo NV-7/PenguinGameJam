@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Unity.VisualStudio.Editor;
 using Unity.VectorGraphics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -35,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     public float ghostSpawnDistance = 0.5f;
     public GameObject gameOverScreen;
     public GameObject pausePanel;
+    public GameObject shield;
 
 
     public float health;
@@ -42,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float healthBarWidth = 0.25f;
     public Transform healthBar;
+
 
     void Awake()
     {
@@ -75,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
     {
         getDirection();
         pointToMouse();
+
 
         if (health <= 0)
         {
@@ -259,4 +263,6 @@ public class PlayerMovement : MonoBehaviour
             time += Time.deltaTime;
         }
     }
+
+
 }

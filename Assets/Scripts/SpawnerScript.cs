@@ -52,9 +52,23 @@ public class SpawnerScript : MonoBehaviour
         Vector2 unitDirection = Random.insideUnitCircle.normalized;
 
         Vector3 spawnPos = playerTransform.position + new Vector3(unitDirection.x, unitDirection.y, 0) * spawnRadius;
+        EnemyController enemyScript = Enemy1.GetComponent<EnemyController>();
 
-        Instantiate(Enemy1, spawnPos, Quaternion.identity);
+       
+
+        float size = Random.Range(3f,7f);
+        
+
+        
+        
+        enemyScript.transform.localScale *= size; 
+
+        GameObject obj = Instantiate(Enemy1, spawnPos, Quaternion.identity);
+        obj.transform.localScale = new Vector3(size, size, size);
+        
+
         enenmyCounter++;
+
 
     }
 
