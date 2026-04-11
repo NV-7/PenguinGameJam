@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class GunTipController : MonoBehaviour
 {
+    public static GunTipController Instance;
     public bool isDashing;
 
     public GameObject bulletPrefab;
@@ -11,6 +12,18 @@ public class GunTipController : MonoBehaviour
     public float shotDelay;
 
     private bool mustReleaseAfterDash;
+    public float bulletDamage = 20f;
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,7 +49,7 @@ public class GunTipController : MonoBehaviour
         // Once mouse is released, allow shooting agiain
         if (mustReleaseAfterDash)
         {
-            if (!Mouse.current.leftButton.wasPressedThisFrame)
+            if (!Mouse.current.leftButton.isPressed)
             {
                 mustReleaseAfterDash = false;
             }
@@ -48,6 +61,12 @@ public class GunTipController : MonoBehaviour
         if (Mouse.current.leftButton.wasPressedThisFrame && !isDashing && sinceLastShot >= shotDelay)
         {
             GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+            BulletBehavior bulletScript = bullet.GetComponent<BulletBehavior>();
+
+            if (bulletScript != null)
+            {
+                bulletScript.damage = bulletDamage;
+            }
             shootSound.Play();
             sinceLastShot = 0f;
         }

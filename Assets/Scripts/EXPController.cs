@@ -7,11 +7,13 @@ public class EXPController : MonoBehaviour
     public static EXPController Instance;
 
     public int level = 1;
+    public GameObject levelUpPanel;
     public int currentEXP = 0;
     public int expToNextLevel = 10;
 
     [SerializeField] private Slider expSlider;
     [SerializeField] private TMP_Text expText;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -39,12 +41,18 @@ public class EXPController : MonoBehaviour
         {
             currentEXP -= expToNextLevel;
             level++;
-            Debug.Log("LEVEL UP" + level);
 
             expToNextLevel += 5;
-            expSlider.maxValue = expToNextLevel;
+            if (expSlider != null)
+            {
+                expSlider.maxValue = expToNextLevel;
+            }
+            ShowLevelUpScreen();
         }
-        expSlider.value = currentEXP;
+        if (expSlider != null)
+        {
+            expSlider.value = currentEXP;
+        }
         UpdateUI();
     }
 
@@ -56,4 +64,26 @@ public class EXPController : MonoBehaviour
             expText.text = currentEXP + " / " + expToNextLevel;
         }
     }
+
+    void ShowLevelUpScreen()
+    {
+        if (levelUpPanel != null)
+        {
+            levelUpPanel.SetActive(true);
+            Time.timeScale = 0f;
+
+            UpgradeManager.Instance.updateShieldText();
+        }
+    }
+
+    public void CloseLevelUpScreen()
+    {
+        if (levelUpPanel != null)
+        {
+            levelUpPanel.SetActive(false);
+            Time.timeScale = 1f;
+        }
+    }
+
+
 }

@@ -9,20 +9,22 @@ public class BulletBehavior : MonoBehaviour
     public float maxTime;
     private Vector3 moveDirection;
 
+    public float damage = 20f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         timeAlive = 0f;
         maxTime = 2f;
         moveDirection = transform.up;
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         timeAlive += Time.deltaTime;
-        if(timeAlive >= maxTime)
+        if (timeAlive >= maxTime)
         {
             Destroy(gameObject);
         }

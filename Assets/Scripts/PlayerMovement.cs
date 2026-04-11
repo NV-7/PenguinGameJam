@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     public float health;
-    private float maxHealth = 100f;
+    public float maxHealth = 100f;
 
     public float healthBarWidth = 0.25f;
     public Transform healthBar;

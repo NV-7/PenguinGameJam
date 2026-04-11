@@ -15,7 +15,6 @@ public class EnemyController : MonoBehaviour
 
     public float health;
     private float maxHealth = 100f;
-    public float bulletDamage;
     public float healthBarWidth = 0.25f;
     public Transform healthBar;
     public GameObject spawner;
@@ -80,12 +79,26 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            audioSource.PlayOneShot(hitSound);
-            if (health - bulletDamage <= 0)
+            BulletBehavior bullet = collision.gameObject.GetComponent<BulletBehavior>();
+
+            float damageTaken = 20f;
+
+            if (bullet != null)
+            {
+                damageTaken = bullet.damage;
+            }
+
+            health -= damageTaken;
+
+
+            if (health <= 0)
             {
                 audioSource.PlayOneShot(deathSound);
             }
-            health -= bulletDamage;
+            else
+            {
+                audioSource.PlayOneShot(hitSound);
+            }
             Destroy(collision.gameObject);
         }
     }
